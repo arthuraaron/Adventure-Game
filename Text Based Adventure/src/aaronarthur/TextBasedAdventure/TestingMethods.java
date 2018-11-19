@@ -85,7 +85,7 @@ public class TestingMethods {
 				break;
 			}
 			else if (choice == 4) {
-				choice(input);
+				choice4(input);
 				break;
 			}
 			else {
