@@ -3,6 +3,7 @@ package aaronarthur.TextBasedAdventure;
 /* Aaron Arthur
  * 11/18
  * Text Based Adventure game
+ * Edited in Git
  */
  
 import java.util.Scanner;
