@@ -17,7 +17,7 @@ public class TextBasedAdventure {
        
         // Traits
         int health = 0;
-        int attack = 0;
+        int damage = 0;
         int defense = 0;
         int dexterity = 0;
         int luck = 0;
@@ -191,7 +191,7 @@ public class TextBasedAdventure {
        
         // Add stats
         health = raceHp + classHp + healthMod;
-        attack = raceAtk + classAtk + attackMod;
+        damage = raceAtk + classAtk + attackMod;
         defense = raceDef + classDef + defenseMod;
         dexterity = raceDex + classDex + dexterityMod;
         luck = raceLuck + classLuck + luckMod;
@@ -200,7 +200,7 @@ public class TextBasedAdventure {
         // Display stats
         System.out.println("\nStats: "
                 + "\nHealth: " + health
-                + "\nAttack: " + attack
+                + "\nAttack: " + damage
                 + "\nDefense: " + defense
                 + "\nDexterity: " + dexterity
                 + "\nLuck: " + luck
@@ -217,10 +217,10 @@ public class TextBasedAdventure {
         action = input.nextInt();
        
         if (action == 1) {
-            Path1(input);
+            Path1(input, health, damage, defense, dexterity, luck, magic, enemyHp, enemyAtk, enemyDef, enemyDex, enemyLuck, enemyMgc, enemyName);
         }
         else if (action == 2) {
-            Forest1(input);
+            Forest1(input, health, damage, defense, dexterity, luck, magic, enemyHp, enemyAtk, enemyDef, enemyDex, enemyLuck, enemyMgc, enemyName);
         }
        
            
@@ -299,7 +299,12 @@ public class TextBasedAdventure {
     }
    
     public static void Combat(Scanner input, int health, int damage, int defense,  int dexterity, int luck, int magic, int enemyHp, int enemyAtk, int enemyDef, int enemyDex, int enemyLuck, int enemyMgc, String enemyName) {
-        System.out.println("\n[1: ATTACK]\t[2: SPECIAL]\t[3: ITEM]\t[4: RETREAT]");
+        // Local Combat variables
+    	int tempHp = health;
+    	
+    	while (enemyHp > 0) {
+    	
+    	System.out.println("\n[1: ATTACK]\t[2: SPECIAL]\t[3: ITEM]\t[4: RETREAT]");
        
         System.out.print("Choice: ");
         int action = input.nextInt();
@@ -307,12 +312,21 @@ public class TextBasedAdventure {
         if (action == 1) {
            
             if (dexterity >= enemyDex) {
-                System.out.println("You attack the " + enemyName + " dealing " + damage + " damage!");
+                System.out.println("You get the first strike, attacking the " + enemyName + " dealing " + damage + " damage!");
+                enemyHp -= damage;
+                
+                if (enemyHp > 0) {
                 System.out.println("The " + enemyName + " strikes back, dealing " + enemyAtk + " damage!");
+                tempHp -= enemyAtk;
+                }
+                
             }
             else {
-                System.out.println("The " + enemyName + " attacks you, dealing " + enemyAtk + " damage!");
+                System.out.println("The " + enemyName + " strikes first, attacking you for " + enemyAtk + " damage!");
+                tempHp -= enemyAtk;
+                
                 System.out.println("You strike back, dealing the " + damage + " damage!");
+                enemyHp -= damage;
             }
            
            
@@ -327,11 +341,12 @@ public class TextBasedAdventure {
            
         }
        
+    	}
        
        
     }
    
-    public static void Forest1(Scanner input) {
+    public static void Forest1(Scanner input, int health, int damage, int defense,  int dexterity, int luck, int magic, int enemyHp, int enemyAtk, int enemyDef, int enemyDex, int enemyLuck, int enemyMgc, String enemyName) {
         System.out.println("\nYou have entered the forest."
                 + "\nAfter trudging through the forest for a bit, you reach a clearing."
                 + "\nYou can see a trapdoor on the ground, and an opening on the other side of the clearing."
@@ -341,16 +356,16 @@ public class TextBasedAdventure {
         int action = input.nextInt();
  
         if (action == 1) {
-            Cave1(input);
+            Cave1(input, health, damage, defense, dexterity, luck, magic, enemyHp, enemyAtk, enemyDef, enemyDex, enemyLuck, enemyMgc, enemyName);
         }
         else if (action == 2) {
-            Town1(input);
+            Town1(input, health, damage, defense, dexterity, luck, magic, enemyHp, enemyAtk, enemyDef, enemyDex, enemyLuck, enemyMgc, enemyName);
         }
        
     }
    
      
-    public static void Path1(Scanner input) {
+    public static void Path1(Scanner input, int health, int damage, int defense,  int dexterity, int luck, int magic, int enemyHp, int enemyAtk, int enemyDef, int enemyDex, int enemyLuck, int enemyMgc, String enemyName) {
         System.out.println("\nYou have followed the path. "
                 + "\nYou follow the path until you approach a fork."
                 + "\nTo the left you see a swamp, and the right a desert. "
@@ -361,10 +376,10 @@ public class TextBasedAdventure {
         int action = input.nextInt();
        
         if (action == 1) {
-            Swamp1(input);
+            Swamp1(input, health, damage, defense, dexterity, luck, magic, enemyHp, enemyAtk, enemyDef, enemyDex, enemyLuck, enemyMgc, enemyName);
         }
         else if (action == 2) {
-            Desert1(input);
+            Desert1(input, health, damage, defense, dexterity, luck, magic, enemyHp, enemyAtk, enemyDef, enemyDex, enemyLuck, enemyMgc, enemyName);
         }
         else if (action == 3) {
             System.out.println("\nYou kill yourself.. That wasnt a very good idea, was it?");
@@ -411,15 +426,15 @@ public class TextBasedAdventure {
        
     }
    
-    public static void Desert1(Scanner input) {
+    public static void Desert1(Scanner input, int health, int damage, int defense,  int dexterity, int luck, int magic, int enemyHp, int enemyAtk, int enemyDef, int enemyDex, int enemyLuck, int enemyMgc, String enemyName) {
        
     }
    
-    public static void Cave1(Scanner input) {
+    public static void Cave1(Scanner input, int health, int damage, int defense,  int dexterity, int luck, int magic, int enemyHp, int enemyAtk, int enemyDef, int enemyDex, int enemyLuck, int enemyMgc, String enemyName) {
        
     }
    
-    public static void Town1(Scanner input) {
+    public static void Town1(Scanner input, int health, int damage, int defense,  int dexterity, int luck, int magic, int enemyHp, int enemyAtk, int enemyDef, int enemyDex, int enemyLuck, int enemyMgc, String enemyName) {
        
     }
    
