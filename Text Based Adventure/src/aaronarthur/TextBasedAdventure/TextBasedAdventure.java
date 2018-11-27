@@ -18,7 +18,6 @@ public class TextBasedAdventure {
         // Traits
         int health = 0;
         int damage = 0;
-        int defense = 0;
         int dexterity = 0;
         int luck = 0;
         int magic = 0;
@@ -26,7 +25,6 @@ public class TextBasedAdventure {
         // Race traits
         int raceHp = 0;
         int raceAtk = 0;
-        int raceDef = 0;
         int raceDex = 0;
         int raceLuck = 0;
         int raceMgc = 0;
@@ -34,7 +32,6 @@ public class TextBasedAdventure {
         // Class traits
         int classHp = 0;
         int classAtk = 0;
-        int classDef = 0;
         int classDex = 0;
         int classLuck = 0;
         int classMgc = 0;
@@ -42,7 +39,6 @@ public class TextBasedAdventure {
         // Modifiers
         int healthMod = 0;
         int attackMod = 0;
-        int defenseMod = 0;
         int dexterityMod = 0;
         int luckMod = 0;
         int magicMod = 0;
@@ -56,7 +52,6 @@ public class TextBasedAdventure {
         String enemyName = "null";
         int enemyHp = 0;
         int enemyAtk = 0;
-        int enemyDef = 0;
         int enemyDex = 0;
         int enemyLuck = 0;
         int enemyMgc = 0;
@@ -110,7 +105,6 @@ public class TextBasedAdventure {
         if (playerRace.equalsIgnoreCase("Dwarf")) {
             raceHp = 0;
             raceAtk = 0;
-            raceDef = 0;
             raceDex = 0;
             raceLuck = 0;
             raceMgc = 0;
@@ -119,7 +113,6 @@ public class TextBasedAdventure {
         else if (playerRace.equalsIgnoreCase("Elf")) {
             raceHp = 0;
             raceAtk = 0;
-            raceDef = 0;
             raceDex = 0;
             raceLuck = 0;
             raceMgc = 0;
@@ -128,7 +121,6 @@ public class TextBasedAdventure {
         else if (playerRace.equalsIgnoreCase("Human")) {
             raceHp = 0;
             raceAtk = 0;
-            raceDef = 0;
             raceDex = 0;
             raceLuck = 0;
             raceMgc = 0;
@@ -152,7 +144,6 @@ public class TextBasedAdventure {
         if (playerClass.equalsIgnoreCase("Knight")) {
             classHp = 0;
             classAtk = 0;
-            classDef = 0;
             classDex = 0;
             classLuck = 0;
             classMgc = 0;
@@ -161,7 +152,6 @@ public class TextBasedAdventure {
         else if (playerClass.equalsIgnoreCase("Wizard")) {
             classHp = 0;
             classAtk = 0;
-            classDef = 0;
             classDex = 0;
             classLuck = 0;
             classMgc = 0;
@@ -170,7 +160,6 @@ public class TextBasedAdventure {
         else if (playerClass.equalsIgnoreCase("Demon")) {
             classHp = 0;
             classAtk = 0;
-            classDef = 0;
             classDex = 0;
             classLuck = 0;
             classMgc = 0;
@@ -192,7 +181,6 @@ public class TextBasedAdventure {
         // Add stats
         health = raceHp + classHp + healthMod;
         damage = raceAtk + classAtk + attackMod;
-        defense = raceDef + classDef + defenseMod;
         dexterity = raceDex + classDex + dexterityMod;
         luck = raceLuck + classLuck + luckMod;
         magic = raceMgc + classMgc + magicMod;
@@ -201,7 +189,6 @@ public class TextBasedAdventure {
         System.out.println("\nStats: "
                 + "\nHealth: " + health
                 + "\nAttack: " + damage
-                + "\nDefense: " + defense
                 + "\nDexterity: " + dexterity
                 + "\nLuck: " + luck
                 + "\nMagic: " + magic);
@@ -217,10 +204,10 @@ public class TextBasedAdventure {
         action = input.nextInt();
        
         if (action == 1) {
-            Path1(input, health, damage, defense, dexterity, luck, magic, enemyHp, enemyAtk, enemyDef, enemyDex, enemyLuck, enemyMgc, enemyName);
+            Path1(input, health, damage,   dexterity, luck, magic, enemyHp, enemyAtk, enemyDex, enemyLuck, enemyMgc, enemyName);
         }
         else if (action == 2) {
-            Forest1(input, health, damage, defense, dexterity, luck, magic, enemyHp, enemyAtk, enemyDef, enemyDex, enemyLuck, enemyMgc, enemyName);
+            Forest1(input, health, damage,   dexterity, luck, magic, enemyHp, enemyAtk, enemyDex, enemyLuck, enemyMgc, enemyName);
         }
        
            
@@ -233,11 +220,10 @@ public class TextBasedAdventure {
             System.out.println("\nOptions: ");
             System.out.print("1: Change health of character"
                     + "\n2: Change attack of character"
-                    + "\n3: Change defense of character"
-                    + "\n4: Change dexterity of character"
-                    + "\n5: Change luck of character"
-                    + "\n6: Change magic of character"
-                    + "\n7: Return"
+                    + "\n3: Change dexterity of character"
+                    + "\n4: Change luck of character"
+                    + "\n5: Change magic of character"
+                    + "\n6: Return"
                     + "\nWhat do you choose?: ");
             int optionsInput = input.nextInt();
            
@@ -250,18 +236,14 @@ public class TextBasedAdventure {
                 attackMod = input.nextInt();   
             }
             else if (optionsInput == 3) {
-                System.out.print("Choose a defense modifier: ");
-                defenseMod = input.nextInt();
-            }
-            else if (optionsInput == 4) {
                 System.out.print("Choose a dexterity modifier: ");
                 dexterityMod = input.nextInt();
             }
-            else if (optionsInput == 5) {
+            else if (optionsInput == 4) {
                 System.out.print("Choose a luck modifier: ");
                 luckMod = input.nextInt();
             }
-            else if (optionsInput == 6) {
+            else if (optionsInput == 5) {
                 System.out.print("Choose a magic modifier: ");
                 magicMod = input.nextInt();
             }
@@ -298,13 +280,14 @@ public class TextBasedAdventure {
                 + "What do you choose?: ");
     }
    
-    public static void Combat(Scanner input, int health, int damage, int defense,  int dexterity, int luck, int magic, int enemyHp, int enemyAtk, int enemyDef, int enemyDex, int enemyLuck, int enemyMgc, String enemyName) {
+    public static void Combat(Scanner input, int health, int damage, int dexterity, int luck, int magic, int enemyHp, int enemyAtk, int enemyDex, int enemyLuck, int enemyMgc, String enemyName) {
         // Local Combat variables
     	int tempHp = health;
+    	int escape = 0;
     	
-    	while (enemyHp > 0) {
-    	
-    	System.out.println("\n[1: ATTACK]\t[2: SPECIAL]\t[3: ITEM]\t[4: RETREAT]");
+    	while (tempHp > 0 && enemyHp > 0 && escape == 0) {
+    		
+    	System.out.println("\n[1: ATTACK]\t[2: SPECIAL]\t[3: HEAL]\t[4: RETREAT]");
        
         System.out.print("Choice: ");
         int action = input.nextInt();
@@ -325,28 +308,95 @@ public class TextBasedAdventure {
                 System.out.println("The " + enemyName + " strikes first, attacking you for " + enemyAtk + " damage!");
                 tempHp -= enemyAtk;
                 
+                if (tempHp > 0) {
                 System.out.println("You strike back, dealing the " + damage + " damage!");
                 enemyHp -= damage;
+                }
+                
             }
            
            
         }
         else if (action == 2) {
+        	int special = 0;
+        	System.out.println("Special attack Menu: \n1: Heavy Blow \n2: Fireball");
+        	System.out.print("What do you choose?: ");
+        	special = input.nextInt();
+        	
+        	if (enemyDex > dexterity) {
+        		System.out.println("The " + enemyName + " strikes first, dealing " + enemyAtk + " damage. ");
+        		tempHp -= enemyAtk;
+        	}
+        	
+        	if (special == 1) {
+        		System.out.println("You use a heavy blow. ");
+        		int heavyRoll = (int) (Math.random() * 50);
+        		heavyRoll += luck;
+        		
+        		if (heavyRoll >= 30) {
+        			System.out.println("The blow strikes true, dealing " + (damage * 2) + "damage. ");
+        		}
+        		else {
+        			System.out.println("It misses completely.");
+        		}
+        		
+        	}
+        	else if (special == 2) {
+        		System.out.println("You throw a fireball at the " + enemyName + " dealing " + magic + " damage. ");
+        		enemyHp -= magic;
+        		
+        	}
+        	
+        	if (enemyHp > 0 && enemyDex <= dexterity) {
+        	System.out.println("The " + enemyName + " strikes back, dealing " + enemyAtk + " damage. ");
+            tempHp -= enemyAtk;
+        	}
+        	
            
         }
         else if (action == 3) {
+        	tempHp += dexterity;
+        	if (tempHp > health) {
+        		tempHp = health;
+        	}
+        	
+        	System.out.println("You heal yourself for " + dexterity + ", going to " + tempHp + "health. ");
+        	
+        	if (enemyHp > 0) {
+            	System.out.println("The " + enemyName + " takes his chance to attack, dealing " + enemyAtk + " damage. ");
+                tempHp -= enemyAtk;
+            	}
            
         }
         else if (action == 4) {
-           
+           System.out.println("You attempt to run like a coward. ");
+           int escapeRoll = (int) (Math.random() * 50);
+           escapeRoll += dexterity;
+           if (escapeRoll >= 25) {
+        	   System.out.println("You have successfully escaped!");
+        	   escape = 1;
+           }
+           else {
+        	   System.out.println("Your attempt to flee fails. The " + enemyName + " strikes you, doing " + enemyAtk + " damage. ");
+           }
+        	
         }
        
+    	}
+    	
+    	if (enemyHp <= 0) {
+    		System.out.println("You defeat your foe! ");
+    	}
+    	
+    	if (tempHp <= 0) {
+    		System.out.println("You have been slain. ");
+    		System.exit(0);
     	}
        
        
     }
    
-    public static void Forest1(Scanner input, int health, int damage, int defense,  int dexterity, int luck, int magic, int enemyHp, int enemyAtk, int enemyDef, int enemyDex, int enemyLuck, int enemyMgc, String enemyName) {
+    public static void Forest1(Scanner input, int health, int damage, int dexterity, int luck, int magic, int enemyHp, int enemyAtk, int enemyDex, int enemyLuck, int enemyMgc, String enemyName) {
         System.out.println("\nYou have entered the forest."
                 + "\nAfter trudging through the forest for a bit, you reach a clearing."
                 + "\nYou can see a trapdoor on the ground, and an opening on the other side of the clearing."
@@ -356,16 +406,16 @@ public class TextBasedAdventure {
         int action = input.nextInt();
  
         if (action == 1) {
-            Cave1(input, health, damage, defense, dexterity, luck, magic, enemyHp, enemyAtk, enemyDef, enemyDex, enemyLuck, enemyMgc, enemyName);
+            Cave1(input, health, damage, dexterity, luck, magic, enemyHp, enemyAtk, enemyDex, enemyLuck, enemyMgc, enemyName);
         }
         else if (action == 2) {
-            Town1(input, health, damage, defense, dexterity, luck, magic, enemyHp, enemyAtk, enemyDef, enemyDex, enemyLuck, enemyMgc, enemyName);
+            Town1(input, health, damage, dexterity, luck, magic, enemyHp, enemyAtk, enemyDex, enemyLuck, enemyMgc, enemyName);
         }
        
     }
    
      
-    public static void Path1(Scanner input, int health, int damage, int defense,  int dexterity, int luck, int magic, int enemyHp, int enemyAtk, int enemyDef, int enemyDex, int enemyLuck, int enemyMgc, String enemyName) {
+    public static void Path1(Scanner input, int health, int damage, int dexterity, int luck, int magic, int enemyHp, int enemyAtk, int enemyDex, int enemyLuck, int enemyMgc, String enemyName) {
         System.out.println("\nYou have followed the path. "
                 + "\nYou follow the path until you approach a fork."
                 + "\nTo the left you see a swamp, and the right a desert. "
@@ -376,10 +426,10 @@ public class TextBasedAdventure {
         int action = input.nextInt();
        
         if (action == 1) {
-            Swamp1(input, health, damage, defense, dexterity, luck, magic, enemyHp, enemyAtk, enemyDef, enemyDex, enemyLuck, enemyMgc, enemyName);
+            Swamp1(input, health, damage, dexterity, luck, magic, enemyHp, enemyAtk, enemyDex, enemyLuck, enemyMgc, enemyName);
         }
         else if (action == 2) {
-            Desert1(input, health, damage, defense, dexterity, luck, magic, enemyHp, enemyAtk, enemyDef, enemyDex, enemyLuck, enemyMgc, enemyName);
+            Desert1(input, health, damage, dexterity, luck, magic, enemyHp, enemyAtk, enemyDex, enemyLuck, enemyMgc, enemyName);
         }
         else if (action == 3) {
             System.out.println("\nYou kill yourself.. That wasnt a very good idea, was it?");
@@ -388,53 +438,52 @@ public class TextBasedAdventure {
        
     }
    
-    public static void Swamp1(Scanner input, int health, int damage, int defense,  int dexterity, int luck, int magic, int enemyHp, int enemyAtk, int enemyDef, int enemyDex, int enemyLuck, int enemyMgc, String enemyName) {
+    public static void Swamp1(Scanner input, int health, int damage,   int dexterity, int luck, int magic, int enemyHp, int enemyAtk, int enemyDex, int enemyLuck, int enemyMgc, String enemyName) {
         System.out.println("\nYou follow the path into the swamp to find an ogre.");
        
        
-        System.out.println("                           __,='`````'=/__\r\n" +
-                "                          '//  (o) \\(o) \\ `'         _,-,\r\n" +
-                "                          //|     ,_)   (`\\      ,-'`_,-\\\r\n" +
-                "                        ,-~~~\\  `'==='  /-,      \\==```` \\__\r\n" +
-                "                       /        `----'     `\\     \\       \\/\r\n" +
-                "                    ,-`                  ,   \\  ,.-\\       \\\r\n" +
-                "                   /      ,               \\,-`\\`_,-`\\_,..--'\\\r\n" +
-                "                  ,`    ,/,              ,>,   )     \\--`````\\\r\n" +
-                "                  (      `\\`---'`  `-,-'`_,<   \\      \\_,.--'`\r\n" +
-                "                   `.      `--. _,-'`_,-`  |    \\\r\n" +
-                "                    [`-.___   <`_,-'`------(    /\r\n" +
-                "                    (`` _,-\\   \\ --`````````|--`\r\n" +
-                "                     >-`_,-`\\,-` ,          |\r\n" +
-                "                   <`_,'     ,  /\\          /\r\n" +
-                "                    `  \\/\\,-/ `/  \\/`\\_/V\\_/\r\n" +
-                "                       (  ._. )    ( .__. )\r\n" +
-                "                       |      |    |      |\r\n" +
-                "                        \\,---_|    |_---./\r\n" +
-                "                        ooOO(_)    (_)OOoo");
+        System.out.println("                         __,='`````'=/__\r\n" +
+                "                        '//  (o) \\(o) \\ `'         _,-,\r\n" +
+                "                        //|     ,_)   (`\\      ,-'`_,-\\\r\n" +
+                "                      ,-~~~\\  `'==='  /-,      \\==```` \\__\r\n" +
+                "                     /        `----'     `\\     \\       \\/\r\n" +
+                "                  ,-`                  ,   \\  ,.-\\       \\\r\n" +
+                "                 /      ,               \\,-`\\`_,-`\\_,..--'\\\r\n" +
+                "                ,`    ,/,              ,>,   )     \\--`````\\\r\n" +
+                "                (      `\\`---'`  `-,-'`_,<   \\      \\_,.--'`\r\n" +
+                "                 `.      `--. _,-'`_,-`  |    \\\r\n" +
+                "                  [`-.___   <`_,-'`------(    /\r\n" +
+                "                  (`` _,-\\   \\ --`````````|--`\r\n" +
+                "                   >-`_,-`\\,-` ,          |\r\n" +
+                "                 <`_,'     ,  /\\          /\r\n" +
+                "                  `  \\/\\,-/ `/  \\/`\\_/V\\_/\r\n" +
+                "                     (  ._. )    ( .__. )\r\n" +
+                "                     |      |    |      |\r\n" +
+                "                      \\,---_|    |_---./\r\n" +
+                "                      ooOO(_)    (_)OOoo");
        
         enemyName = "Shrek";
-        enemyHp = 0;
+        enemyHp = 1;
         enemyAtk = 0;
-        enemyDef = 0;
         enemyDex = 0;
         enemyLuck = 0;
         enemyMgc = 0;
        
-        Combat(input, health, damage, defense, dexterity, luck, magic, enemyHp, enemyAtk, enemyDef, enemyDex, enemyLuck, enemyMgc, enemyName);
+        Combat(input, health, damage, dexterity, luck, magic, enemyHp, enemyAtk, enemyDex, enemyLuck, enemyMgc, enemyName);
        
        
        
     }
    
-    public static void Desert1(Scanner input, int health, int damage, int defense,  int dexterity, int luck, int magic, int enemyHp, int enemyAtk, int enemyDef, int enemyDex, int enemyLuck, int enemyMgc, String enemyName) {
+    public static void Desert1(Scanner input, int health, int damage, int dexterity, int luck, int magic, int enemyHp, int enemyAtk, int enemyDex, int enemyLuck, int enemyMgc, String enemyName) {
        
     }
    
-    public static void Cave1(Scanner input, int health, int damage, int defense,  int dexterity, int luck, int magic, int enemyHp, int enemyAtk, int enemyDef, int enemyDex, int enemyLuck, int enemyMgc, String enemyName) {
+    public static void Cave1(Scanner input, int health, int damage, int dexterity, int luck, int magic, int enemyHp, int enemyAtk, int enemyDex, int enemyLuck, int enemyMgc, String enemyName) {
        
     }
    
-    public static void Town1(Scanner input, int health, int damage, int defense,  int dexterity, int luck, int magic, int enemyHp, int enemyAtk, int enemyDef, int enemyDex, int enemyLuck, int enemyMgc, String enemyName) {
+    public static void Town1(Scanner input, int health, int damage, int dexterity, int luck, int magic, int enemyHp, int enemyAtk, int enemyDex, int enemyLuck, int enemyMgc, String enemyName) {
        
     }
    
