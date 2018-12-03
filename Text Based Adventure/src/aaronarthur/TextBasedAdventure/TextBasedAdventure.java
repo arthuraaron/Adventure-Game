@@ -60,7 +60,7 @@ public class TextBasedAdventure {
         int action = 0;
        
         // Title Screen
-        System.out.print("Welcome to an unnamed game!\n");
+        System.out.print("Welcome to an adventure game!\n");
         System.out.println("                              /\\  //\\\\\r\n" +
                 "                       /\\    //\\\\///\\\\\\        /\\\r\n" +
                 "                      //\\\\  ///\\////\\\\\\\\  /\\  //\\\\\r\n" +
@@ -196,22 +196,9 @@ public class TextBasedAdventure {
         // Start story
         System.out.println("\nWe are ready to start our adventure. ");
        
+        Path1(input, health, damage, dexterity, luck, magic, enemyHp, enemyAtk, enemyDex, enemyLuck, enemyMgc, enemyName);
        
-        System.out.println("\nYou wake up on a path in a forest."
-                + "\nIt is dim, but you can see a light coming from ahead in the path.");
-        System.out.println("1: Follow the path\n2: Go into the forest");
-        System.out.print("What do you do?: ");
-        action = input.nextInt();
-       
-        if (action == 1) {
-            Path1(input, health, damage,   dexterity, luck, magic, enemyHp, enemyAtk, enemyDex, enemyLuck, enemyMgc, enemyName);
-        }
-        else if (action == 2) {
-            Forest1(input, health, damage,   dexterity, luck, magic, enemyHp, enemyAtk, enemyDex, enemyLuck, enemyMgc, enemyName);
-        }
-       
-           
-           
+
         }
         // Options
         else if (menuInput == 2) {
@@ -295,7 +282,7 @@ public class TextBasedAdventure {
         if (action == 1) {
            
             if (dexterity >= enemyDex) {
-                System.out.println("You get the first strike, attacking the " + enemyName + " dealing " + damage + " damage!");
+                System.out.println("\nYou get the first strike, attacking the " + enemyName + " dealing " + damage + " damage!");
                 enemyHp -= damage;
                 
                 if (enemyHp > 0) {
@@ -305,7 +292,7 @@ public class TextBasedAdventure {
                 
             }
             else {
-                System.out.println("The " + enemyName + " strikes first, attacking you for " + enemyAtk + " damage!");
+                System.out.println("\nThe " + enemyName + " strikes first, attacking you for " + enemyAtk + " damage!");
                 tempHp -= enemyAtk;
                 
                 if (tempHp > 0) {
@@ -392,27 +379,9 @@ public class TextBasedAdventure {
        
     }
    
-    public static void Forest1(Scanner input, int health, int damage, int dexterity, int luck, int magic, int enemyHp, int enemyAtk, int enemyDex, int enemyLuck, int enemyMgc, String enemyName) {
-        System.out.println("\nYou have entered the forest."
-                + "\nAfter trudging through the forest for a bit, you reach a clearing."
-                + "\nYou can see a trapdoor on the ground, and an opening on the other side of the clearing."
-                + "\n1: Enter the trapdoor."
-                + "\n2: Go to the opening in the clearing.");
-        System.out.print("What do you do?: ");
-        int action = input.nextInt();
- 
-        if (action == 1) {
-            Cave1(input, health, damage, dexterity, luck, magic, enemyHp, enemyAtk, enemyDex, enemyLuck, enemyMgc, enemyName);
-        }
-        else if (action == 2) {
-            Town1(input, health, damage, dexterity, luck, magic, enemyHp, enemyAtk, enemyDex, enemyLuck, enemyMgc, enemyName);
-        }
-       
-    }
-   
      
     public static void Path1(Scanner input, int health, int damage, int dexterity, int luck, int magic, int enemyHp, int enemyAtk, int enemyDex, int enemyLuck, int enemyMgc, String enemyName) {
-        System.out.println("\nYou have followed the path. "
+        System.out.println("\nYou wake up on a path in the middle of a forest. "
                 + "\nYou follow the path until you approach a fork."
                 + "\nTo the left you see a swamp, and the right a desert. "
                 + "\n1: Go left into the swamp. "
@@ -485,6 +454,93 @@ public class TextBasedAdventure {
         }
 
     }
+    
+    public static void Town1(Scanner input, int health, int damage, int dexterity, int luck, int magic, int enemyHp, int enemyAtk, int enemyDex, int enemyLuck, int enemyMgc, String enemyName) {
+        System.out.println("On the way to the town, you find a man carrying many packs on the path. ");
+        System.out.print("1: Approach the man. "
+        		+ "\n2: Continue to the town. "
+        		+ "\nWhat do you do?: ");
+        
+        int action = 0;
+        action = input.nextInt();
+        
+        if (action == 1) {
+        	System.out.print("\"Hello! I am just a wary traveller. Would you mind offering me some of your luck?\"");
+        	int action2 = 0;
+        	action2 = input.nextInt();
+        	
+        	if (action2 == 1) {
+        		System.out.println("\"Thank you for your generosity, kind stranger.\"");
+        		luck = 0;
+        		health += 2;
+        		damage += 2;
+        		dexterity += 2;
+        		magic += 2;
+        		
+        		System.out.println("Your luck is now 0, but all of your other stats have been increased by 2. ");
+        		
+        		System.out.println("You bid the shopkeeper farewell, and move towards the town. ");
+        		
+        	}
+        	else {
+        		System.out.println("\"I see how it is... \"");
+        		System.out.println("The man takes out his sword and kills you with a single swing."
+        				+ "\nMaybe that will teach you to be charitable.");
+        		System.exit(0);
+        		
+        	}
+        	
+        }
+        
+        Town2(input, health, damage, dexterity, luck, magic, enemyHp, enemyAtk, enemyDex, enemyLuck, enemyMgc, enemyName);
+       
+    }
+    
+    public static void Town2(Scanner input, int health, int damage, int dexterity, int luck, int magic, int enemyHp, int enemyAtk, int enemyDex, int enemyLuck, int enemyMgc, String enemyName) {
+    	System.out.println("You enter the town. ");
+    	
+    	System.out.println("After looking around, you decide that you are tired."
+    			+ "\nYou walk into the inn and fall asleep. ");
+    	
+    	System.out.println("After waking up, you see the town in flames. ");
+    	
+    	System.out.println("You eventually see the dragon on the other side of town. ");
+    	
+    	System.out.println("                                             __----~~~~~~~~~~~------___\r\n" + 
+    			"                                  .  .   ~~//====......          __--~ ~~\r\n" + 
+    			"                  -.            \\_|//     |||\\\\  ~~~~~~::::... /~\r\n" + 
+    			"               ___-==_       _-~o~  \\/    |||  \\\\            _/~~-\r\n" + 
+    			"       __---~~~.==~||\\=_    -_--~/_-~|-   |\\\\   \\\\        _/~\r\n" + 
+    			"   _-~~     .=~    |  \\\\-_    '-~7  /-   /  ||    \\      /\r\n" + 
+    			" .~       .~       |   \\\\ -_    /  /-   /   ||      \\   /\r\n" + 
+    			"/  ____  /         |     \\\\ ~-_/  /|- _/   .||       \\ /\r\n" + 
+    			"|~~    ~~|--~~~~--_ \\     ~==-/   | \\~--===~~        .\\\r\n" + 
+    			"         '         ~-|      /|    |-~\\~~       __--~~\r\n" + 
+    			"                     |-~~-_/ |    |   ~\\_   _-~            /\\\r\n" + 
+    			"                          /  \\     \\__   \\/~                \\__\r\n" + 
+    			"                      _--~ _/ | .-~~____--~-/                  ~~==.\r\n" + 
+    			"                     ((->/~   '.|||' -_|    ~~-/ ,              . _||\r\n" + 
+    			"                                -_     ~\\      ~~---l__i__i__i--~~_/\r\n" + 
+    			"                                _-~-__   ~)  \\--______________--~~\r\n" + 
+    			"                              //.-~~~-~_--~- |-------~~~~~~~~\r\n" + 
+    			"                                     //.-~~~--\\");
+    	enemyName = "dragon";
+        enemyHp = 30;
+        enemyAtk = 4;
+        enemyDex = 4;
+        enemyLuck = 0;
+        enemyMgc = 0;
+        
+        Combat(input, health, damage, dexterity, luck, magic, enemyHp, enemyAtk, enemyDex, enemyLuck, enemyMgc, enemyName);
+        
+        System.out.println("\nThe dragon dies.");
+        
+        System.out.println("\nCONGRATULATIONS! You happen to be the last person alive in the town, and its remnants are all your riches!");
+        System.exit(0);
+    	
+    	
+    }
+    
     
     public static void Swamp2(Scanner input, int health, int damage, int dexterity, int luck, int magic, int enemyHp, int enemyAtk, int enemyDex, int enemyLuck, int enemyMgc, String enemyName) {
     	System.out.print("\nYou trudge through the swamp, coming across a potion on the ground."
@@ -561,7 +617,6 @@ public class TextBasedAdventure {
             try {
 				Thread.sleep(1000);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
             
@@ -574,7 +629,6 @@ public class TextBasedAdventure {
     		try {
 				Thread.sleep(1000);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
     		
@@ -642,6 +696,27 @@ public class TextBasedAdventure {
        
     }
     
+    public static void Desert2(Scanner input, int health, int damage, int dexterity, int luck, int magic, int enemyHp, int enemyAtk, int enemyDex, int enemyLuck, int enemyMgc, String enemyName) {
+    	System.out.println("\nYou go into the dunes. ");
+    	
+    	System.out.println("After walking around for many hours, you get weary. ");
+    	
+    	dexterity -= 2;
+    	
+    	System.out.println("Your dexterity has been decreased by 2. ");
+    	
+    	System.out.println("\nAfter a few more hours of walking around, you manage to make it back to the pyramid. ");
+    	
+    	try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+    	
+    	Pyramid1(input, health, damage, dexterity, luck, magic, enemyHp, enemyAtk, enemyDex, enemyLuck, enemyMgc, enemyName);
+    	
+    }
+    
     
     public static void Pyramid1(Scanner input, int health, int damage, int dexterity, int luck, int magic, int enemyHp, int enemyAtk, int enemyDex, int enemyLuck, int enemyMgc, String enemyName) {
     	System.out.println("\nAs you walk up to the pyramid, you can see a sphynx blocking the entrance. ");
@@ -694,24 +769,165 @@ public class TextBasedAdventure {
     }
     
     public static void Pyramid2(Scanner input, int health, int damage, int dexterity, int luck, int magic, int enemyHp, int enemyAtk, int enemyDex, int enemyLuck, int enemyMgc, String enemyName) {
+    	System.out.println("You have now entered the pyramid. There are two identical doors on the left and right.");
+    	System.out.print("1: Enter left door"
+    			+ "\n2: Enter right door"
+    			+ "\nWhat do you do?: ");
+    	int action = 0;
+    	action = input.nextInt();
+    	
+    	if (action == 2) {
+    		System.out.println("\nYou enter the right door, only to fall into a pit of spikes. ");
+    		health -= 2;
+    		System.out.println("You are injured and permanently lose 2 HP. You now have " + health + " health. ");
+    		
+    		System.out.println("You manage to crawl your way back, and enter the left door instead. ");
+    		
+    		try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+    		
+    	}
+    	
+    	
+		System.out.println("\nYou enter the left door to find a tomb slightly ajar."
+				+ "\nPeeking inside the tomb, you see a mummy. ");
+		
+		enemyName = "mummy";
+        enemyHp = 10;
+        enemyAtk = 2;
+        enemyDex = 6;
+        enemyLuck = 0;
+        enemyMgc = 0;
+        
+        System.out.println("                 ?\r\n" + 
+        		"             ____\"_                   |   |\r\n" + 
+        		"            /\"  _)))                  |\\_/|______,\r\n" + 
+        		"           /===( _\\                  /::| Q  ____)\r\n" + 
+        		"          (\"___|   >   ,_           /:::|   /    ,_\r\n" + 
+        		"             o  _=    / _///       /::::|_ /    / _///\r\n" + 
+        		"       _______| |____/ |         _|:::::| |:___/ |\r\n" + 
+        		"      |  __)  \\_/ /____|        | '----'\\_/  /___|\r\n" + 
+        		"     _| / \\    ) )             _| /  \\   :  /\r\n" + 
+        		" _\\\\\\__/   \\    /          _\\\\\\__/    \\    /\r\n" + 
+        		"           /   (                      /===(\r\n" + 
+        		"          / \\   \\                    /     \\\r\n" + 
+        		"         /   \\   \\                  /       \\\r\n" + 
+        		"         |    \\   \\                 |        \\\r\n" + 
+        		"         |     \\   \\                |         \\\r\n" + 
+        		"         |      \\   \\               |,_________\\\r\n" + 
+        		"         |       \\   \\               /  )  / )\r\n" + 
+        		"         |,_______\\___\\             /  /  (  |\r\n" + 
+        		"           | /   \\ |                | /    \\ |\r\n" + 
+        		"           |/     \\|                |/      \\|\r\n" + 
+        		"           S__     S__              S__      S__\r\n" + 
+        		"          /___\\   /___\\            /___\\    /___\\");
+        
+        Combat(input, health, damage, dexterity, luck, magic, enemyHp, enemyAtk, enemyDex, enemyLuck, enemyMgc, enemyName);
+
+		System.out.println("The mummy has died. ");
+		
+		Pyramid3(input, health, damage, dexterity, luck, magic, enemyHp, enemyAtk, enemyDex, enemyLuck, enemyMgc, enemyName);
+		
+    }
+    
+    public static void Pyramid3(Scanner input, int health, int damage, int dexterity, int luck, int magic, int enemyHp, int enemyAtk, int enemyDex, int enemyLuck, int enemyMgc, String enemyName) {
+    	System.out.println("After defeating the mummy, you move into the next room of the pyramid. ");
+    	System.out.println("You see a giant spider in the corner of the room, seeming to guard something. ");
+    	System.out.print("1: Approach the spider. "
+    			+ "\n2: Continue your journey through the pyramid. "
+    			+ "\nWhat do you do?: ");
+    	int action = 0;
+    	action = input.nextInt();
+    	
+    	if (action == 1 ) {
+    		System.out.println("              (\r\n" + 
+    				"               )\r\n" + 
+    				"              (\r\n" + 
+    				"        /\\  .-\"\"\"-.  /\\\r\n" + 
+    				"       //\\\\/  ,,,  \\//\\\\\r\n" + 
+    				"       |/\\| ,;;;;;, |/\\|\r\n" + 
+    				"       //\\\\\\;-\"\"\"-;///\\\\\r\n" + 
+    				"      //  \\/   .   \\/  \\\\\r\n" + 
+    				"     (| ,-_| \\ | / |_-, |)\r\n" + 
+    				"       //`__\\.-.-./__`\\\\\r\n" + 
+    				"      // /.-(() ())-.\\ \\\\\r\n" + 
+    				"     (\\ |)   '---'   (| /)\r\n" + 
+    				"      ` (|           |) `\r\n" + 
+    				"        \\)           (/");
+    		
+    		System.out.println("You approach the spider. ");
+    		System.out.println("\"You must be dexterous to get the loot that I guard.\"");
+    		
+    		if (dexterity >= 8) {
+    			System.out.println("\"You have proven to be dexterous enough to get the Sigil of Enlightenment!\"");
+    			health += 3;
+    			damage += 2;
+    			System.out.println("Your health has been increased by 3.");
+    			System.out.println("Your strength has been incresed by 2. ");
+    			
+    		}
+    		else {
+    			System.out.println("You are not dexterous enough to get my loot, be gone!");
+    		}
+    		
+    		
+    		
+    	}
+    	
+    	Pyramid4(input, health, damage, dexterity, luck, magic, enemyHp, enemyAtk, enemyDex, enemyLuck, enemyMgc, enemyName);
+    	
     	
     }
     
-    public static void Desert2(Scanner input, int health, int damage, int dexterity, int luck, int magic, int enemyHp, int enemyAtk, int enemyDex, int enemyLuck, int enemyMgc, String enemyName) {
+    public static void Pyramid4(Scanner input, int health, int damage, int dexterity, int luck, int magic, int enemyHp, int enemyAtk, int enemyDex, int enemyLuck, int enemyMgc, String enemyName) {
     	
+    	System.out.println("                              .sSSSSSSSs\r\n" + 
+    			"                              sSS=\"\"^^^\"s\r\n" + 
+    			"                  /\\       , /  \\_\\_\\|_/_)\r\n" + 
+    			"                 /';;     /| \\\\\\/.-. .-./\r\n" + 
+    			"                / \\;|    /. \\,S'  -   - |\r\n" + 
+    			"               / -.;|    | '.SS     _|  ;\r\n" + 
+    			"              ; '-.;\\,   |'-.SS\\   __  /S\r\n" + 
+    			"              | _  ';\\\\.  \\' SSS\\_____/SS\r\n" + 
+    			"              |  '- ';\\\\.  \\_SSS[_____]SS\r\n" + 
+    			"              \\ '--.-';;-. __SSS/\\    SSS\r\n" + 
+    			"               \\  .--' ';;'.=SSS`\\\\_\\_SSS\r\n" + 
+    			"                `._ .-'` _';;..=.=.=.\\.=\\\r\n" + 
+    			"                   ;-._-'  _.;\\.=.=.=.|.=|\r\n" + 
+    			"         ,     _.-'    `\"=._  ;\\=.=__/__/\r\n" + 
+    			"         )\\ .'`   __        \".;|.=.=.=./\r\n" + 
+    			"         (_\\   .-`  '.   |    \\/=.=.=/`\r\n" + 
+    			"          /\\\\         \\-,|     |.--'|\r\n" + 
+    			"         /  \\`,       //  \\    | |  |\r\n" + 
+    			"        ( (__) )  _.-'--,  \\   | |  '--,\r\n" + 
+    			"         ;----' -'--,__}}}  \\  '--, __}}}\r\n" + 
+    			"         \\_________}}}       \\___}}}");
+    	
+    	System.out.println("IT WAS A MISTAKE TO LET YOU INTO THE PYRAMID!");
+    	
+    	enemyName = "Sphinx";
+        enemyHp = 50;
+        enemyAtk = 2;
+        enemyDex = 1;
+        enemyLuck = 0;
+        enemyMgc = 0;
+    	
+        Combat(input, health, damage, dexterity, luck, magic, enemyHp, enemyAtk, enemyDex, enemyLuck, enemyMgc, enemyName);
+        
+        System.out.println("The Sphinx has been slain. ");
+        
+        System.out.println("\nCONGRATULATIONS! You have slain the sphinx and beaten the game. ");
+        System.exit(0);
+        
     }
     
-    public static void Cave1(Scanner input, int health, int damage, int dexterity, int luck, int magic, int enemyHp, int enemyAtk, int enemyDex, int enemyLuck, int enemyMgc, String enemyName) {
-       
-    }
+
    
-    public static void Town1(Scanner input, int health, int damage, int dexterity, int luck, int magic, int enemyHp, int enemyAtk, int enemyDex, int enemyLuck, int enemyMgc, String enemyName) {
-       
-    }
+
     
     
-   
-   
-   
    
 }
