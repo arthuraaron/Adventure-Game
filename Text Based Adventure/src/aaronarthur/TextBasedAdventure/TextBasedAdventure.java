@@ -37,7 +37,7 @@ public class TextBasedAdventure {
         int classMgc = 0;
        
         // Modifiers
-        int healthMod = 100;
+        int healthMod = 0;
         int attackMod = 0;
         int dexterityMod = 0;
         int luckMod = 0;
@@ -103,6 +103,7 @@ public class TextBasedAdventure {
         playerRace = inputY.nextLine();
        
         if (playerRace.equalsIgnoreCase("Dwarf")) {
+        	playerRace = "Dwarf";
             raceHp = 5;
             raceAtk = 4;
             raceDex = 3;
@@ -111,6 +112,7 @@ public class TextBasedAdventure {
             raceMenu = 1;
         }
         else if (playerRace.equalsIgnoreCase("Elf")) {
+        	playerRace = "Elf";
             raceHp = 3;
             raceAtk = 3;
             raceDex = 5;
@@ -119,6 +121,7 @@ public class TextBasedAdventure {
             raceMenu = 1;
         }
         else if (playerRace.equalsIgnoreCase("Human")) {
+        	playerRace = "Human";
             raceHp = 4;
             raceAtk = 5;
             raceDex = 4;
@@ -142,6 +145,7 @@ public class TextBasedAdventure {
         playerClass = inputZ.nextLine();
        
         if (playerClass.equalsIgnoreCase("Knight")) {
+        	playerClass = "Knight";
             classHp = 5;
             classAtk = 4;
             classDex = 4;			
@@ -150,6 +154,7 @@ public class TextBasedAdventure {
             classMenu = 1;
         }
         else if (playerClass.equalsIgnoreCase("Wizard")) {
+        	playerClass = "Wizard";
             classHp = 3;
             classAtk = 3;
             classDex = 5;			
@@ -158,6 +163,7 @@ public class TextBasedAdventure {
             classMenu = 1;
         }
         else if (playerClass.equalsIgnoreCase("Demon")) {
+        	playerClass = "Demon";
             classHp = 4;
             classAtk = 5;
             classDex = 3;			
@@ -262,16 +268,21 @@ public class TextBasedAdventure {
        
     }
    
+    
+    // Main Menu
     public static void MainMenu() {
         System.out.print("\nMenu:\n1: Play game\n2: Options\n3: Credits\n4: Exit game\n"
                 + "What do you choose?: ");
     }
    
+    
+    // Combat
     public static void Combat(Scanner input, int health, int damage, int dexterity, int luck, int magic, int enemyHp, int enemyAtk, int enemyDex, int enemyLuck, int enemyMgc, String enemyName) {
         // Local Combat variables
     	int tempHp = health;
     	int escape = 0;
     	
+    	// Combat loop
     	while (tempHp > 0 && enemyHp > 0 && escape == 0) {
     		
     	System.out.println("\n[1: ATTACK]\t[2: SPECIAL]\t[3: HEAL]\t[4: RETREAT]");
@@ -279,6 +290,7 @@ public class TextBasedAdventure {
         System.out.print("Choice: ");
         int action = input.nextInt();
        
+        // Attack
         if (action == 1) {
            
             if (dexterity >= enemyDex) {
@@ -290,6 +302,9 @@ public class TextBasedAdventure {
                 tempHp -= enemyAtk;
                 }
                 
+                System.out.println("You now have " + tempHp + " health left. ");
+                
+                
             }
             else {
                 System.out.println("\nThe " + enemyName + " strikes first, attacking you for " + enemyAtk + " damage!");
@@ -300,10 +315,13 @@ public class TextBasedAdventure {
                 enemyHp -= damage;
                 }
                 
+                System.out.println("You now have " + tempHp + " health left. ");
+                
             }
            
            
-        }
+        } 
+        // Special (Heavy Blow / Fireball)
         else if (action == 2) {
         	int special = 0;
         	System.out.println("\nSpecial attack Menu: \n1: Heavy Blow \n2: Fireball");
@@ -339,8 +357,11 @@ public class TextBasedAdventure {
             tempHp -= enemyAtk;
         	}
         	
+        	System.out.println("You now have " + tempHp + " health left. ");
+        	
            
         }
+        // Heal
         else if (action == 3) {
         	tempHp += dexterity;
         	if (tempHp > health) {
@@ -355,6 +376,7 @@ public class TextBasedAdventure {
             	}
            
         }
+        // Flee
         else if (action == 4) {
            System.out.println("You attempt to run like a coward. ");
            int escapeRoll = (int) (Math.random() * 100);
@@ -371,6 +393,7 @@ public class TextBasedAdventure {
        
     	}
     	
+    	// You die
     	if (tempHp <= 0) {
     		System.out.println("\nYou have been slain. ");
     		System.exit(0);
@@ -380,6 +403,7 @@ public class TextBasedAdventure {
     }
    
      
+    // Start of program
     public static void Path1(Scanner input, int health, int damage, int dexterity, int luck, int magic, int enemyHp, int enemyAtk, int enemyDex, int enemyLuck, int enemyMgc, String enemyName) {
         System.out.println("\nYou wake up on a path in the middle of a forest. "
                 + "\nYou follow the path until you approach a fork."
@@ -456,7 +480,7 @@ public class TextBasedAdventure {
     }
     
     public static void Town1(Scanner input, int health, int damage, int dexterity, int luck, int magic, int enemyHp, int enemyAtk, int enemyDex, int enemyLuck, int enemyMgc, String enemyName) {
-        System.out.println("On the way to the town, you find a man carrying many packs on the path. ");
+        System.out.println("\nOn the way to the town, you find a man carrying many packs on the path. ");
         System.out.print("1: Approach the man. "
         		+ "\n2: Continue to the town. "
         		+ "\nWhat do you do?: ");
@@ -465,12 +489,15 @@ public class TextBasedAdventure {
         action = input.nextInt();
         
         if (action == 1) {
-        	System.out.print("\"Hello! I am just a wary traveller. Would you mind offering me some of your luck?\"");
+        	System.out.print("\"Hello! I am just a wary traveller. Would you mind offering me some of your luck?\""
+        			+ "\n1: Yes"
+        			+ "\n2: No"
+        			+ "\nWhat do you do?: ");
         	int action2 = 0;
         	action2 = input.nextInt();
         	
         	if (action2 == 1) {
-        		System.out.println("\"Thank you for your generosity, kind stranger.\"");
+        		System.out.println("\n\"Thank you for your generosity, kind stranger.\"");
         		luck = 0;
         		health += 2;
         		damage += 2;
@@ -483,7 +510,7 @@ public class TextBasedAdventure {
         		
         	}
         	else {
-        		System.out.println("\"I see how it is... \"");
+        		System.out.println("\n\"I see how it is... \"");
         		System.out.println("The man takes out his sword and kills you with a single swing."
         				+ "\nMaybe that will teach you to be charitable.");
         		System.exit(0);
@@ -497,7 +524,7 @@ public class TextBasedAdventure {
     }
     
     public static void Town2(Scanner input, int health, int damage, int dexterity, int luck, int magic, int enemyHp, int enemyAtk, int enemyDex, int enemyLuck, int enemyMgc, String enemyName) {
-    	System.out.println("You enter the town. ");
+    	System.out.println("\nYou enter the town. ");
     	
     	System.out.println("After looking around, you decide that you are tired."
     			+ "\nYou walk into the inn and fall asleep. ");
@@ -827,14 +854,14 @@ public class TextBasedAdventure {
         
         Combat(input, health, damage, dexterity, luck, magic, enemyHp, enemyAtk, enemyDex, enemyLuck, enemyMgc, enemyName);
 
-		System.out.println("The mummy has died. ");
+		System.out.println("\nThe mummy has died. ");
 		
 		Pyramid3(input, health, damage, dexterity, luck, magic, enemyHp, enemyAtk, enemyDex, enemyLuck, enemyMgc, enemyName);
 		
     }
     
     public static void Pyramid3(Scanner input, int health, int damage, int dexterity, int luck, int magic, int enemyHp, int enemyAtk, int enemyDex, int enemyLuck, int enemyMgc, String enemyName) {
-    	System.out.println("After defeating the mummy, you move into the next room of the pyramid. ");
+    	System.out.println("\nAfter defeating the mummy, you move into the next room of the pyramid. ");
     	System.out.println("You see a giant spider in the corner of the room, seeming to guard something. ");
     	System.out.print("1: Approach the spider. "
     			+ "\n2: Continue your journey through the pyramid. "
@@ -906,7 +933,7 @@ public class TextBasedAdventure {
     			"         ;----' -'--,__}}}  \\  '--, __}}}\r\n" + 
     			"         \\_________}}}       \\___}}}");
     	
-    	System.out.println("IT WAS A MISTAKE TO LET YOU INTO THE PYRAMID!");
+    	System.out.println("IT WAS A MISTAKE TO LET YOU INTO THE PYRAMID! NOW I HAVE TO KILL YOU!");
     	
     	enemyName = "Sphinx";
         enemyHp = 50;
